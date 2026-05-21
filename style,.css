@@ -1553,3 +1553,828 @@ body::before {
     /* מעלים את הבועות (Tooltips) במובייל כדי שלא יסתירו תוכן */
     .dock-btn::before, .dock-btn::after { display: none; }
 }
+
+
+/* ============================================================
+   FIXES & IMPROVEMENTS FOR DESKTOP HEADER
+============================================================ */
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header-left-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-phone-desktop {
+    font-weight: 700;
+    color: var(--text);
+    font-size: 0.95rem;
+    direction: ltr; /* שומר על פורמט המספר תקין */
+}
+
+/* סידור המרווחים של התפריט בווב שלא יתבלגן */
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* מרווח מאוזן בין הלינקים */
+}
+
+@media (max-width: 1024px) {
+    .desktop-nav, .header-left-actions {
+        display: none; /* מונע מהתפריט לקרוס בווב קטן, משאיר למובייל לטפל בזה */
+    }
+    .hamburger-btn {
+        display: flex;
+    }
+}
+
+/* ============================================================
+   NEW HERO DESIGN & BACKGROUND IMAGE
+============================================================ */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 20px 60px;
+    /* תמונת רקע של רשת ברזלי בניין הנדסית כהה התואמת בדיוק לצילום המסך */
+    background: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1920&auto=format&fit=crop') center center no-repeat;
+    background-size: cover;
+    background-attachment: fixed; /* אפקט פרלקס יוקרתי בגלילה */
+}
+
+/* שכבת ערפול כהה מעל הרקע שהטקסט ייקרא בצורה מושלמת */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(7, 11, 20, 0.85) 0%, rgba(7, 11, 20, 0.92) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+/* עיצוב הכותרות החדש */
+.hero-cyan-title {
+    display: block;
+    color: var(--primary);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.hero h1 {
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 25px;
+}
+
+.hero-desc {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: #cbd5e1;
+    max-width: 720px;
+    margin: 0 auto 35px;
+    line-height: 1.7;
+}
+
+/* כפתורי הוי (Pills) מהתמונה */
+.hero-features-list {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.feature-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.feature-pill svg {
+    color: var(--primary);
+}
+
+/* כפתורים משודרגים */
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 60px;
+}
+
+.btn-dark-outline {
+    background: rgba(7, 11, 20, 0.6);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #ffffff;
+}
+
+.btn-dark-outline:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #ffffff;
+}
+
+/* סטטיסטיקות חדשות כולל העכבר המרכזי */
+.hero-stats-new {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 30px;
+    flex-wrap: wrap;
+}
+
+.stat-box {
+    text-align: center;
+    min-width: 100px;
+}
+
+.stat-box .num {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.stat-box .lbl {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+/* אייקון העכבר האנימטיבי באמצע */
+.scroll-mouse-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-mouse {
+    width: 22px;
+    height: 36px;
+    border: 2px solid var(--muted);
+    border-radius: 20px;
+    position: relative;
+    opacity: 0.7;
+}
+
+.scroll-mouse .wheel {
+    width: 4px;
+    height: 8px;
+    background-color: var(--primary);
+    border-radius: 2px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: mouseScrollAnim 1.6s infinite ease-in-out;
+}
+
+@keyframes mouseScrollAnim {
+    0% { top: 6px; opacity: 1; }
+    50% { top: 14px; opacity: 0.3; }
+    100% { top: 6px; opacity: 1; }
+}
+
+/* התאמה למובייל של האלמנטים החדשים בלבד */
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll; /* מונע בעיות ריצוד רקע במובייל */
+    }
+    .hero-stats-new {
+        gap: 20px;
+    }
+    .scroll-mouse-wrapper {
+        display: none; /* מסתיר את העכבר במסכים קטנים כדי לשמור על עיצוב נקי */
+    }
+    .stat-box {
+        min-width: 40%; /* מסדר אותם ב-2 שורות יפות */
+    }
+}
+
+
+/* מיקום ועיצוב תג המחיר הזול ביותר בצורה יוקרתית שלא חוסמת את הטקסט */
+.price-badge-floating {
+    position: absolute;
+    top: 120px;
+    right: 40px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--gold);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
+    z-index: 10;
+    backdrop-filter: blur(5px);
+}
+
+/* אזור התגים מעל הכותרת */
+.hero-badges-new {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.hero-badge-pill {
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    background: rgba(7, 11, 20, 0.6);
+    backdrop-filter: blur(4px);
+    border: 1px solid;
+}
+
+/* שילוב הצבעים המקוריים שלך בעיצוב החדש */
+.badge-blue-pill {
+    color: var(--primary);
+    border-color: rgba(14, 165, 233, 0.4);
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.15);
+}
+
+.badge-orange-pill {
+    color: var(--safety);
+    border-color: rgba(255, 90, 31, 0.4);
+    box-shadow: 0 0 10px rgba(255, 90, 31, 0.15);
+}
+
+/* תיקון צבע הכותרת הפנימית בתוך ה-H1 */
+.hero h1 span {
+    color: var(--primary);
+    text-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* התאמת תג המחיר למובייל */
+@media (max-width: 768px) {
+    .price-badge-floating {
+        position: relative;
+        top: 0;
+        right: 0;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+}
+
+
+/* ============================================================
+   HERO STYLE & RESPONSIVE BACKGROUND
+============================================================ */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 160px 20px 80px;
+    background: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1920&auto=format&fit=crop') center center no-repeat;
+    background-size: cover;
+    background-attachment: fixed; /* אפקט פרלקס יוקרתי למחשב */
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(7, 11, 20, 0.88) 0%, rgba(7, 11, 20, 0.94) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+/* באדג' מחיר צף בדסקטופ */
+.price-badge-floating {
+    position: absolute;
+    top: 130px;
+    right: 40px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid var(--gold);
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.25);
+    z-index: 10;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* קפסולות תגים */
+.hero-badges-new {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.hero-badge-pill {
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    background: rgba(11, 17, 33, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid;
+}
+
+.badge-blue-pill { color: var(--primary); border-color: rgba(14, 165, 233, 0.35); }
+.badge-orange-pill { color: var(--safety); border-color: rgba(255, 90, 31, 0.35); }
+
+.hero-cyan-title {
+    display: block;
+    color: var(--primary);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.hero h1 {
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--primary);
+    text-shadow: 0 0 15px var(--primary-glow);
+}
+
+.hero-desc {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: #cbd5e1;
+    max-width: 720px;
+    margin: 0 auto 35px;
+    line-height: 1.7;
+}
+
+/* פיצ'רים קטנים (V) */
+.hero-features-list {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.feature-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.feature-pill svg { color: var(--primary); }
+
+/* כפתורים */
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 60px;
+}
+
+.btn-dark-outline {
+    background: rgba(7, 11, 20, 0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #ffffff;
+}
+.btn-dark-outline:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: #ffffff;
+}
+
+/* אזור סטטיסטיקות ועכבר */
+.hero-stats-new {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 30px;
+    flex-wrap: wrap;
+}
+
+.stat-box { text-align: center; min-width: 110px; }
+.stat-box .num { display: block; font-size: 2.2rem; font-weight: 800; color: var(--primary); }
+.stat-box .lbl { display: block; font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+
+/* עכבר הגלילה */
+.scroll-mouse-wrapper { display: flex; align-items: center; justify-content: center; }
+.scroll-mouse { width: 22px; height: 36px; border: 2px solid var(--muted); border-radius: 20px; position: relative; opacity: 0.7; }
+.scroll-mouse .wheel { width: 4px; height: 8px; background-color: var(--primary); border-radius: 2px; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); animation: mouseScrollAnim 1.6s infinite ease-in-out; }
+
+@keyframes mouseScrollAnim {
+    0% { top: 6px; opacity: 1; }
+    50% { top: 14px; opacity: 0.3; }
+    100% { top: 6px; opacity: 1; }
+}
+
+/* ============================================================
+   CRITICAL MOBILE OPTIMIZATION (מסכים קטנים מ-768 פיקסלים)
+============================================================ */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 130px; /* מונע מהתפריט העליון של המובייל לדרוס את התוכן */
+        padding-bottom: 40px;
+        background-attachment: scroll; /* ביטול פרלקס במובייל למניעת קפיצות וריצודים ברקע */
+    }
+
+    /* הפיכת תג המחיר לחלק מרכזי שזורם יפה בראש העמוד */
+    .price-badge-floating {
+        position: relative;
+        top: 0;
+        right: 0;
+        display: inline-block;
+        margin-bottom: 20px;
+        font-size: 0.8rem;
+        padding: 6px 14px;
+    }
+
+    /* התגים המקוריים מקבלים מרווח קומפקטי */
+    .hero-badges-new {
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+    
+    .hero-badge-pill {
+        font-size: 0.75rem;
+        padding: 5px 12px;
+        width: 100%; /* נותן להם אופציה להתפרס יפה בזה אחר זה במובייל */
+        max-width: 290px;
+    }
+
+    /* כפתורי ההנעה לפעולה הופכים לטוריים ונוחים ללחיצה (Full Width המקובל בווב מודרני) */
+    .hero-btns {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto 45px;
+    }
+
+    .hero-btns .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px;
+        font-size: 1rem;
+    }
+
+    /* הסתרת העכבר הלא רלוונטי למסכי מגע */
+    .scroll-mouse-wrapper {
+        display: none;
+    }
+
+    /* סידור הסטטיסטיקות במבנה רשת (Grid) של 2X2 מדהים */
+    .hero-stats-new {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding-top: 24px;
+        max-width: 340px;
+        margin: 0 auto;
+    }
+
+    .stat-box {
+        min-width: unset;
+        background: rgba(15, 23, 42, 0.4);
+        padding: 12px 5px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .stat-box .num {
+        font-size: 1.8rem;
+    }
+    
+    .stat-box .lbl {
+        font-size: 0.8rem;
+    }
+}
+
+
+
+/* ============================================================
+   NEW DESIGN - DESKTOP & MOBILE COMPREHENSIVE HERO 
+============================================================ */
+
+/* עיצוב כללי למחשב (ווב) */
+.hero {
+    position: relative !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 160px 20px 80px !important;
+    background: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1920&auto=format&fit=crop') center center no-repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+    overflow: hidden !important;
+}
+
+.hero-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(to bottom, rgba(7, 11, 20, 0.88) 0%, rgba(7, 11, 20, 0.94) 100%) !important;
+    z-index: 1 !important;
+}
+
+.hero-content {
+    position: relative !important;
+    z-index: 2 !important;
+    max-width: 900px !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+/* באדג' מחיר זהב צף */
+.price-badge-floating {
+    position: absolute !important;
+    top: 130px !important;
+    right: 40px !important;
+    background: rgba(15, 23, 42, 0.85) !important;
+    border: 1px solid var(--gold) !important;
+    color: #ffffff !important;
+    padding: 8px 18px !important;
+    border-radius: 50px !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.25) !important;
+    z-index: 10 !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* קפסולות תגים */
+.hero-badges-new {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin-bottom: 24px !important;
+    flex-wrap: wrap !important;
+}
+
+.hero-badge-pill {
+    padding: 6px 16px !important;
+    border-radius: 30px !important;
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    background: rgba(11, 17, 33, 0.6) !important;
+    backdrop-filter: blur(4px) !important;
+    border: 1px solid !important;
+}
+
+.badge-blue-pill { color: var(--primary) !important; border-color: rgba(14, 165, 233, 0.35) !important; }
+.badge-orange-pill { color: var(--safety) !important; border-color: rgba(255, 90, 31, 0.35) !important; }
+
+.hero-cyan-title {
+    display: block !important;
+    color: var(--primary) !important;
+    font-size: clamp(1.5rem, 3vw, 2.5rem) !important;
+    font-weight: 900 !important;
+    margin-bottom: 8px !important;
+}
+
+.hero h1 {
+    font-size: clamp(2.2rem, 5vw, 4.2rem) !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    line-height: 1.2 !important;
+    margin-bottom: 25px !important;
+}
+
+.hero h1 span {
+    color: var(--primary) !important;
+    text-shadow: 0 0 15px var(--primary-glow) !important;
+}
+
+.hero-desc {
+    font-size: clamp(1rem, 2vw, 1.2rem) !important;
+    color: #cbd5e1 !important;
+    max-width: 720px !important;
+    margin: 0 auto 35px !important;
+    line-height: 1.7 !important;
+}
+
+/* פיצ'רים עם וי (V) */
+.hero-features-list {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 40px !important;
+}
+
+.feature-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    padding: 8px 16px !important;
+    border-radius: 50px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    color: #e2e8f0 !important;
+}
+.feature-pill svg { color: var(--primary) !important; }
+
+/* כפתורים */
+.hero-btns {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    margin-bottom: 60px !important;
+}
+.btn-dark-outline {
+    background: rgba(7, 11, 20, 0.5) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #ffffff !important;
+}
+
+/* סטטיסטיקות ועכבר גלילה */
+.hero-stats-new {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 40px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding-top: 30px !important;
+    flex-wrap: wrap !important;
+}
+.stat-box { text-align: center !important; min-width: 110px !important; }
+.stat-box .num { display: block !important; font-size: 2.2rem !important; font-weight: 800 !important; color: var(--primary) !important; }
+.stat-box .lbl { display: block !important; font-size: 0.85rem !important; color: var(--muted) !important; margin-top: 4px !important; }
+
+.scroll-mouse-wrapper { display: flex !important; align-items: center !important; justify-content: center !important; }
+.scroll-mouse { width: 22px !important; height: 36px !important; border: 2px solid var(--muted) !important; border-radius: 20px !important; position: relative !important; opacity: 0.7 !important; }
+.scroll-mouse .wheel { width: 4px !important; height: 8px !important; background-color: var(--primary) !important; border-radius: 2px !important; position: absolute !important; top: 6px !important; left: 50% !important; transform: translateX(-50%) !important; animation: mouseScrollAnim 1.6s infinite ease-in-out !important; }
+
+@keyframes mouseScrollAnim {
+    0% { top: 6px; opacity: 1; }
+    50% { top: 14px; opacity: 0.3; }
+    100% { top: 6px; opacity: 1; }
+}
+
+/* ============================================================
+   מובייל ספציפי - דורס הכל ומסדר את הנראות בטלפונים
+============================================================ */
+@media (max-width: 768px) {
+    .hero {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 120px 16px 40px !important; /* מרווח שלא יתקע מתחת לתפריט המובייל */
+        min-height: auto !important;
+        height: auto !important;
+        background-attachment: scroll !important; /* מבטל בעיות ריצוד רקע במובייל */
+        background-position: center top !important;
+    }
+
+    .hero-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        transform: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* סידור תג המחיר בראש המובייל בצורה יפה */
+    .price-badge-floating {
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        margin: 0 auto 20px !important;
+        font-size: 0.8rem !important;
+        padding: 6px 14px !important;
+        width: fit-content !important;
+        display: inline-block !important;
+    }
+
+    /* תגים בטור במובייל שלא ייחתכו */
+    .hero-badges-new {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .hero-badge-pill {
+        font-size: 0.75rem !important;
+        padding: 6px 12px !important;
+        width: 100% !important;
+        max-width: 280px !important;
+        text-align: center !important;
+    }
+
+    .hero h1 {
+        font-size: 1.9rem !important; /* מונע מטקסט לצאת מהמסך בטלפון */
+        line-height: 1.25 !important;
+        margin-bottom: 16px !important;
+    }
+
+    .hero-desc {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+        padding: 0 10px !important;
+        margin-bottom: 28px !important;
+    }
+
+    .hero-features-list {
+        flex-direction: column !important;
+        gap: 10px !important;
+        width: 100% !important;
+        margin-bottom: 30px !important;
+    }
+
+    .feature-pill {
+        width: 100% !important;
+        max-width: 260px !important;
+        justify-content: center !important;
+    }
+
+    /* כפתורים רחבים וגדולים לאצבע */
+    .hero-btns {
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 auto 40px !important;
+    }
+
+    .hero-btns .btn {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    /* רשת (Grid) של 2X2 לסטטיסטיקות במובייל */
+    .hero-stats-new {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        padding-top: 20px !important;
+    }
+
+    .stat-box {
+        min-width: unset !important;
+        background: rgba(15, 23, 42, 0.4) !important;
+        padding: 10px 4px !important;
+        border-radius: 8px !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .stat-box .num { font-size: 1.5rem !important; }
+    .stat-box .lbl { font-size: 0.75rem !important; }
+
+    .scroll-mouse-wrapper { display: none !important; } /* הסתרת העכבר במובייל */
+}
