@@ -9,59 +9,36 @@
     <link rel="stylesheet" href="style,.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- 1. קודם כל: התג הראשי של Google -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18281094110"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'AW-18281094110');
-      
-      /* איחדתי לך לכאן גם את תג ה-Analytics כדי לשמור על קוד נקי */
-      gtag('config', 'G-XN9LCYEVJQ');
-    </script>
-
-    <!-- 2. מיד אחריו: קטע הקוד של האירוע (Event Snippet) -->
-    <script>
-    function gtag_report_conversion(url) {
-      var callback = function () {
-        if (typeof(url) != 'undefined') {
-          window.location = url;
-        }
-      };
-      gtag('event', 'conversion', {
-          'send_to': 'AW-18281094110/4b3TCKWh0cgcEN63jY1E',
-          'transaction_id': '',
-          'event_callback': callback
-      });
-      return false;
-    }
-    </script>
-<!-- Google tag (gtag.js) -->
+<!-- Google tag (Google Ads + Google Analytics) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18281094110"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-18281094110');
-</script>
 
-<!-- Event snippet for רכישה conversion page -->
 <script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+gtag('js', new Date());
+
+/* Google Ads */
+gtag('config', 'AW-18281094110');
+
+/* Google Analytics */
+gtag('config', 'G-XN9LCYEVJQ');
+
+/* Conversion Event */
 function gtag_report_conversion(url) {
-  var callback = function () {
-    if (typeof(url) != 'undefined') {
-      window.location = url;
-    }
-  };
-  gtag('event', 'conversion', {
-      'send_to': 'AW-18281094110/4b3TCKWh0cgcEN63jY1E',
-      'transaction_id': '',
-      'event_callback': callback
-  });
-  return false;
+    var callback = function () {
+        if (typeof url !== 'undefined') {
+            window.location = url;
+        }
+    };
+
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18281094110/4b3TCKWh0cgcEN63jY1E',
+        'transaction_id': '',
+        'event_callback': callback
+    });
+
+    return false;
 }
 </script>
     <style>
@@ -1314,6 +1291,21 @@ conversionLinks.forEach(function(link) {
   });
 });
 
+</script>
+
+
+<script>
+document.getElementById("leadForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // עוצר שליחה רגילה
+
+    // פה אתה יכול להוסיף בדיקות / שליחה לשרת אם יש
+
+    // קריאה להמרה של Google Ads
+    gtag_report_conversion();
+
+    // אחרי זה אפשר להראות הודעה למשתמש
+    alert("הטופס נשלח בהצלחה!");
+});
 </script>
 </body>
 </html>
