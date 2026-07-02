@@ -6,55 +6,40 @@
     <title>תכלת הנדסה | בדק בית ופיקוח בניה</title>
     <meta name="description" content="תכלת הנדסה - שירותי בדק בית מקצועיים, איתור נזילות, ביקורת מבנים ושירותי פיקוח בניה. מהנדסים מוסמכים, פריסה ארצית.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="style,.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<!-- Event snippet for רכישה conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
-<script>
-function gtag_report_conversion(url) {
-  var callback = function () {
-    if (typeof(url) != 'undefined') {
-      window.location = url;
+    <!-- 1. קודם כל: התג הראשי של Google -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18281094110"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18281094110');
+      
+      /* איחדתי לך לכאן גם את תג ה-Analytics כדי לשמור על קוד נקי */
+      gtag('config', 'G-XN9LCYEVJQ');
+    </script>
+
+    <!-- 2. מיד אחריו: קטע הקוד של האירוע (Event Snippet) -->
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18281094110/4b3TCKWh0cgcEN63jY1E',
+          'transaction_id': '',
+          'event_callback': callback
+      });
+      return false;
     }
-  };
-  gtag('event', 'conversion', {
-      'send_to': 'AW-18281094110/4b3TCKWh0cgcEN63jY1E',
-      'transaction_id': '',
-      'event_callback': callback
-      // 'new_customer': true /* calculate dynamically, populate with true/false */,
-  });
-  return false;
-}
-</script>
+    </script>
 
-
-
-
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18281094110"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18281094110');
-</script>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XN9LCYEVJQ"></script>
-
-<script>
-window.dataLayer = window.dataLayer || [];
-
-function gtag(){
-dataLayer.push(arguments);
-}
-
-gtag('js', new Date());
-
-gtag('config', 'G-XN9LCYEVJQ');
-</script>
     <style>
         /* מניעת תזוזה ימינה ושמאלה בניידים */
         html, body {
@@ -1284,19 +1269,27 @@ let text =
 פרטים:
 ${note}`;
 
-
-
 let url =
 "https://wa.me/972508448818?text="
 +
 encodeURIComponent(text);
 
-
+// דיווח לגוגל על שליחת הטופס
+gtag_report_conversion();
 
 window.open(url,"_blank");
 
 
 });
+
+// מעקב המרות אוטומטי לכל קישורי הטלפון והוואטסאפ באתר
+var conversionLinks = document.querySelectorAll('a[href^="tel:"], a[href^="https://wa.me"]');
+conversionLinks.forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    gtag_report_conversion();
+  });
+});
+
 </script>
 </body>
 </html>
