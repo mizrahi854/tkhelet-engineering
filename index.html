@@ -51,6 +51,27 @@ function gtag_report_conversion(url) {
             padding: 0;
         }
     </style>
+
+
+<!-- Event snippet for רכישה (1) conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18281094110/JWc9CK_SuckcEN63jY1E',
+      'transaction_id': '',
+      'event_callback': callback
+      // 'new_customer': true /* calculate dynamically, populate with true/false */,
+  });
+  return false;
+}
+</script>
+
 </head>
 <body>
 <div class="bg-glow"></div>
